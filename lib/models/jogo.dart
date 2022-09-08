@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Jogo {
   final String name;
   final int id;
@@ -18,13 +16,4 @@ class Jogo {
       cover: json['cover'],
     );
   }
-
-  String gameToJson(List<Jogo> data) =>
-      json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "cover": cover,
-      };
 }
