@@ -14,32 +14,32 @@ class Cover extends StatelessWidget {
           arguments: jogo.id.toString(),
         );
       },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          (jogo.cover != null)
-              ? FadeInImage.assetNetwork(
-                  placeholder: 'assets/loading.gif',
-                  image:
-                      'https:${jogo.cover["url"].replaceAll("t_thumb", "t_cover_big")}',
-                  height: 200.0,
-                )
-              : Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 206, 206, 206),
-                  ),
-                  width: 150,
-                  height: 200,
-                  child: Center(
-                    child: Text(
-                      jogo.name,
-                      textScaleFactor: 1.7,
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                )
-        ],
-      ),
+      child: (jogo.cover != null)
+          ? ClipRRect(
+              borderRadius: BorderRadius.circular(14), // Image border
+              child: FadeInImage.assetNetwork(
+                placeholder: 'assets/loading.gif',
+                placeholderFit: BoxFit.scaleDown,
+                image:
+                    'https:${jogo.cover["url"].replaceAll("t_thumb", "t_cover_big")}',
+                fit: BoxFit.cover,
+              ),
+            )
+          : Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(14),
+                ),
+                color: Colors.white70,
+              ),
+              child: Center(
+                child: Text(
+                  jogo.name,
+                  textScaleFactor: 1.7,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
     );
   }
 }

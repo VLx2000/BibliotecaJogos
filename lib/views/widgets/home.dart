@@ -65,17 +65,22 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final int tam = MediaQuery.of(context).size.width ~/ 150;
     return FutureBuilder<List<Jogo>>(
       future: futureJogos,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Jogo> list = snapshot.data ?? [];
-          return ListView.builder(
-            padding: const EdgeInsets.all(16.0),
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: tam < 1 ? 1 : tam,
+              childAspectRatio: 0.75,
+            ),
+            padding: const EdgeInsets.all(14),
             itemCount: list.length,
             itemBuilder: (context, i) {
               return Container(
-                margin: const EdgeInsets.only(bottom: 10.0),
+                margin: const EdgeInsets.all(7),
                 child: Cover(jogo: snapshot.data![i]),
               );
             },

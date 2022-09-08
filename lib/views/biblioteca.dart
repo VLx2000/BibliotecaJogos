@@ -28,13 +28,14 @@ class _BibliotecaViewState extends State<BibliotecaView> {
       title: 'Bibiolteca de Jogos',
       theme: ThemeData(
         primarySwatch: Colors.red,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 41, 41, 41),
       ),
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 24, 24, 24),
-          title: const Text('Biblioteca de Jogos'),
+          title: const Text('Biblioteca de Jogos 🎮'),
         ),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
@@ -61,6 +62,7 @@ class _BibliotecaViewState extends State<BibliotecaView> {
           onTap: _onItemTapped,
         ),
       ),
+      debugShowCheckedModeBanner: false, //Removing Debug Banner
     );
   }
 }
