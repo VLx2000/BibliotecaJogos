@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:biblioteca_jogos/components/cover.dart';
 import 'package:biblioteca_jogos/models/jogo.dart';
 import 'package:biblioteca_jogos/services/request_api.dart';
+import 'package:biblioteca_jogos/views/game.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -39,9 +40,17 @@ class _HomeViewState extends State<HomeView> {
             padding: const EdgeInsets.all(14),
             itemCount: list.length,
             itemBuilder: (context, i) {
-              return Container(
-                margin: const EdgeInsets.all(7),
-                child: Cover(jogo: snapshot.data![i]),
+              return InkWell(
+                onTap: () {
+                  Navigator.of(context, rootNavigator: true).pushNamed(
+                    '/game',
+                    arguments: i,
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.all(7),
+                  child: Cover(jogo: snapshot.data![i]),
+                ),
               );
             },
           );

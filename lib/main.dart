@@ -1,3 +1,4 @@
+import 'package:biblioteca_jogos/views/game.dart';
 import 'package:flutter/material.dart';
 import 'package:biblioteca_jogos/views/biblioteca.dart';
 
@@ -10,11 +11,11 @@ void main() {
           return MaterialPageRoute(
               builder: (context) => const BibliotecaView());
         }
-        /* if (settings.name == '/jogo') {
+        if (settings.name == '/game') {
           var args = settings.arguments;
           return MaterialPageRoute(
-              builder: (context) => JogoView(id: args as String));
-        } */
+              builder: (context) => GameView(index: args as int));
+        }
         return MaterialPageRoute(builder: (context) => const UnknownScreen());
       },
     ),

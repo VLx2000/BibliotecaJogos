@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:biblioteca_jogos/views/widgets/home.dart';
+import 'package:biblioteca_jogos/views/game.dart';
 
 class BibliotecaView extends StatefulWidget {
   const BibliotecaView({super.key});
