@@ -20,6 +20,20 @@ class Repository {
     );
   }
 
+  Future<Response> searchByText(dynamic responseBody, String busca) async {
+    final fields = 'search "$busca"; fields name,cover.url';
+    const limit = 'limit 100';
+
+    return await post(
+      APIUrl.searchUrl,
+      headers: {
+        "Client-ID": Secret.clientID,
+        "Authorization": "Bearer ${responseBody["access_token"]}",
+      },
+      body: '$fields; $limit;',
+    );
+  }
+
   Future<Response> auth() async {
     return await post(APIUrl.authUrl);
   }

@@ -3,6 +3,7 @@ import 'package:biblioteca_jogos/components/cover.dart';
 import 'package:biblioteca_jogos/models/jogo.dart';
 import 'package:biblioteca_jogos/services/request_api.dart';
 import 'package:biblioteca_jogos/views/game.dart';
+import 'package:biblioteca_jogos/views/widgets/games_gridview.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     listaJogos = [];
-    futureJogos = req.fetchJogos();
+    futureJogos = req.fetchGameRecommendations();
   }
 
   @override
@@ -30,34 +31,20 @@ class _HomeViewState extends State<HomeView> {
     return FutureBuilder<List<Jogo>>(
       future: futureJogos,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<Jogo> list = snapshot.data ?? [];
-          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: tam < 1 ? 1 : tam,
-              childAspectRatio: 0.75,
-            ),
-            padding: const EdgeInsets.all(14),
-            itemCount: list.length,
-            itemBuilder: (context, i) {
-              return InkWell(
-                onTap: () {
-                  Navigator.of(context, rootNavigator: true).pushNamed(
-                    '/game',
-                    arguments: i,
-                  );
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(7),
-                  child: Cover(jogo: snapshot.data![i]),
-                ),
-              );
-            },
-          );
-        } else if (snapshot.hasError) {
-          return Text('${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+          case ConnectionState.waiting:
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          case ConnectionState.active:
+          case ConnectionState.done:
+            if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
         }
-        return const CircularProgressIndicator();
+        List<Jogo> list = snapshot.data ?? [];
+        return GamesGridView(tam: tam, snapshot: snapshot, list: list);
       },
     );
   }

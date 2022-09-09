@@ -1,3 +1,4 @@
+import 'package:biblioteca_jogos/views/widgets/explore.dart';
 import 'package:flutter/material.dart';
 import 'package:biblioteca_jogos/views/widgets/home.dart';
 import 'package:biblioteca_jogos/views/game.dart';
@@ -13,7 +14,7 @@ class _BibliotecaViewState extends State<BibliotecaView> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     HomeView(),
-    Text('tela explorar'),
+    ExploreView(),
     Text('tela playlist'),
   ];
 
@@ -28,9 +29,10 @@ class _BibliotecaViewState extends State<BibliotecaView> {
     return MaterialApp(
       title: 'Bibiolteca de Jogos',
       theme: ThemeData(
-        primarySwatch: Colors.red,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 41, 41, 41),
-      ),
+          primarySwatch: Colors.red,
+          scaffoldBackgroundColor: const Color.fromARGB(255, 41, 41, 41),
+          inputDecorationTheme:
+              InputDecorationTheme(filled: true, fillColor: Colors.white)),
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
