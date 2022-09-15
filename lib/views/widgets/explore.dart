@@ -11,9 +11,12 @@ class ExploreView extends StatefulWidget {
   State<ExploreView> createState() => _ExploreViewState();
 }
 
+Future<List<Jogo>> setList() async {
+  return [];
+}
+
 class _ExploreViewState extends State<ExploreView> {
   late Future<List<Jogo>>? futureJogos;
-  late List<Jogo> listaJogos;
   APIRequest req = APIRequest();
 
   Timer? _debounce;
@@ -21,18 +24,26 @@ class _ExploreViewState extends State<ExploreView> {
   @override
   void initState() {
     super.initState();
-    listaJogos = [];
-    futureJogos = req.searchGamesByText('');
+    futureJogos = setList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      child: Column(
-        children: [
-          TextField(
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(21),
+          child: TextField(
             keyboardType: TextInputType.text,
+            style: const TextStyle(
+              color: Colors.white,
+              decorationColor: Colors.white,
+            ),
+            decoration: const InputDecoration(
+              fillColor: Color.fromARGB(255, 24, 24, 24),
+              hintText: "Digite o nome do jogo",
+              hintStyle: TextStyle(color: Colors.white38),
+            ),
             onChanged: (value) {
               if (_debounce?.isActive ?? false) _debounce!.cancel();
               _debounce = Timer(const Duration(milliseconds: 500), () {
@@ -42,8 +53,9 @@ class _ExploreViewState extends State<ExploreView> {
               });
             },
           ),
-          Expanded(
-              child: FutureBuilder(
+        ),
+        Expanded(
+          child: FutureBuilder<List<Jogo>>(
             future: futureJogos,
             builder: (context, snapshot) {
               final int tam = MediaQuery.of(context).size.width ~/ 150;
@@ -63,9 +75,9 @@ class _ExploreViewState extends State<ExploreView> {
               List<Jogo> list = snapshot.data ?? [];
               return GamesGridView(tam: tam, snapshot: snapshot, list: list);
             },
-          ))
-        ],
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
