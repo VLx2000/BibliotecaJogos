@@ -10,7 +10,7 @@ class Cover extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context, rootNavigator: true).pushNamed(
-          '/jogo',
+          '/game',
           arguments: jogo.id.toString(),
         );
       },

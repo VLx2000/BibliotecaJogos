@@ -34,6 +34,20 @@ class Repository {
     );
   }
 
+  Future<Response> searchById(dynamic responseBody, String id) async {
+    final fields =
+        'fields name,cover.url,platforms.name,release_dates.human,rating,summary;where id = $id';
+
+    return await post(
+      APIUrl.searchUrl,
+      headers: {
+        "Client-ID": Secret.clientID,
+        "Authorization": "Bearer ${responseBody["access_token"]}",
+      },
+      body: '$fields;',
+    );
+  }
+
   Future<Response> auth() async {
     return await post(APIUrl.authUrl);
   }
