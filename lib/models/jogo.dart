@@ -3,7 +3,7 @@ class Jogo {
   final int id;
   final dynamic cover;
   final List<dynamic>? platforms;
-  final List<dynamic>? release_dates;
+  final List<dynamic>? releaseDates;
   final dynamic rating;
   final dynamic summary;
 
@@ -12,7 +12,7 @@ class Jogo {
       required this.id,
       this.cover,
       this.platforms,
-      this.release_dates,
+      this.releaseDates,
       this.rating,
       this.summary});
 
@@ -22,7 +22,7 @@ class Jogo {
         id: json['id'],
         cover: json['cover'],
         platforms: json['platforms'],
-        release_dates: json['release_dates'],
+        releaseDates: json['release_dates'],
         rating: json['rating'],
         summary: json['summary']);
   }

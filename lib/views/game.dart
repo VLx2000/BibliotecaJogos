@@ -11,14 +11,14 @@ class GameView extends StatefulWidget {
 
 class _GameViewState extends State<GameView> {
   late int saved;
-  late Future<Jogo> future_game;
+  late Future<Jogo> futureGame;
   late Jogo jogo;
   APIRequest req = APIRequest();
 
   @override
   void initState() {
     super.initState();
-    future_game = req.searchGameById(widget.id);
+    futureGame = req.searchGameById(widget.id);
     jogo = Jogo(id: 1, name: '-');
     saved = 0;
   }
@@ -28,6 +28,7 @@ class _GameViewState extends State<GameView> {
     return Scaffold(
         appBar: AppBar(),
         body: FutureBuilder<Jogo>(
+          future: futureGame,
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
               return const Center(
