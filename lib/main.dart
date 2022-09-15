@@ -14,7 +14,7 @@ void main() {
         if (settings.name == '/game') {
           var args = settings.arguments;
           return MaterialPageRoute(
-              builder: (context) => GameView(index: args as int));
+              builder: (context) => GameView(id: args as String));
         }
         return MaterialPageRoute(builder: (context) => const UnknownScreen());
       },
