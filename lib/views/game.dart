@@ -40,7 +40,18 @@ class _GameViewState extends State<GameView> {
                 children: [
                   Text(snapshot.data!.name),
                   Image.network(
-                      'https:${snapshot.data!.cover["url"].replaceAll("t_thumb", "t_cover_big")}')
+                      'https:${snapshot.data!.cover["url"].replaceAll("t_thumb", "t_cover_big")}'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text("Adicionar a Lista de Desejos"),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {}, child: Text("Adicionar a Coleção"))
+                    ],
+                  ),
                 ],
               ));
             } else {
