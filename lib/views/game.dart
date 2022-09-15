@@ -52,20 +52,24 @@ class _GameViewState extends State<GameView> {
                           onPressed: () {}, child: Text("Adicionar a Coleção"))
                     ],
                   ),
-                  Row(
-                    children: <Widget>[
-                      ListView.builder(
-                        padding: const EdgeInsets.all(8),
-                        itemCount: snapshot.data!.genres!.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            child: Center(
-                                child:
-                                    Text("- ${snapshot.data!.genres![index]}")),
-                          );
-                        },
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      children: <Widget>[
+                        ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          padding: const EdgeInsets.all(8),
+                          itemCount: snapshot.data!.genres!.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              child: Center(
+                                  child: Text(
+                                      "- ${snapshot.data!.genres![index]['name']}")),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ));
