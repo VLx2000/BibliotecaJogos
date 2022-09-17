@@ -36,7 +36,8 @@ class _GameViewState extends State<GameView> {
               );
             } else if (snapshot.hasData) {
               return Center(
-                  child: Column(
+                  child: SingleChildScrollView(
+                      child: Column(
                 children: [
                   Text(snapshot.data!.name),
                   Image.network(
@@ -85,7 +86,7 @@ class _GameViewState extends State<GameView> {
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               padding: const EdgeInsets.all(8),
-                              itemCount: snapshot.data!.genres!.length,
+                              itemCount: snapshot.data!.platforms!.length,
                               itemBuilder: (context, index) {
                                 return Container(
                                   child: Text(
@@ -110,8 +111,24 @@ class _GameViewState extends State<GameView> {
                       )),
                     ],
                   ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 16, left: 8),
+                      child: Title(
+                        color: Colors.black,
+                        child: Text(
+                          "Descrição",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 8, left: 8),
+                      child: Text(snapshot.data!.summary))
                 ],
-              ));
+              )));
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
