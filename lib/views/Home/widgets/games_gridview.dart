@@ -1,4 +1,4 @@
-import 'package:biblioteca_jogos/components/cover.dart';
+import 'package:biblioteca_jogos/views/Home/widgets/cover.dart';
 import 'package:biblioteca_jogos/models/jogo.dart';
 import 'package:flutter/material.dart';
 

@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'package:biblioteca_jogos/models/jogo.dart';
 import 'package:biblioteca_jogos/services/request_api.dart';
-import 'package:biblioteca_jogos/views/widgets/games_gridview.dart';
+import 'package:biblioteca_jogos/views/Home/widgets/games_gridview.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class RecommendationsView extends StatefulWidget {
+  const RecommendationsView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<RecommendationsView> createState() => _RecommendationsViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _RecommendationsViewState extends State<RecommendationsView> {
   late Future<List<Jogo>> futureJogos;
   APIRequest req = APIRequest();
 

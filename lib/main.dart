@@ -1,6 +1,6 @@
-import 'package:biblioteca_jogos/views/game.dart';
+import 'package:biblioteca_jogos/views/Game/game.dart';
 import 'package:flutter/material.dart';
-import 'package:biblioteca_jogos/views/biblioteca.dart';
+import 'package:biblioteca_jogos/views/Home/home.dart';
 
 void main() {
   runApp(
@@ -8,8 +8,7 @@ void main() {
       initialRoute: '/',
       onGenerateRoute: (settings) {
         if (settings.name == '/') {
-          return MaterialPageRoute(
-              builder: (context) => const BibliotecaView());
+          return MaterialPageRoute(builder: (context) => const HomeView());
         }
         if (settings.name == '/game') {
           var args = settings.arguments;

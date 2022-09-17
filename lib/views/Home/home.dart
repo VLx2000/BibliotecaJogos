@@ -1,19 +1,18 @@
-import 'package:biblioteca_jogos/views/widgets/explore.dart';
+import 'package:biblioteca_jogos/views/Home/widgets/explore.dart';
 import 'package:flutter/material.dart';
-import 'package:biblioteca_jogos/views/widgets/home.dart';
-import 'package:biblioteca_jogos/views/game.dart';
+import 'package:biblioteca_jogos/views/Home/widgets/recommendations.dart';
 
-class BibliotecaView extends StatefulWidget {
-  const BibliotecaView({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  State<BibliotecaView> createState() => _BibliotecaViewState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _BibliotecaViewState extends State<BibliotecaView> {
+class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    HomeView(),
+    RecommendationsView(),
     ExploreView(),
     Text('tela playlist'),
   ];
@@ -27,12 +26,15 @@ class _BibliotecaViewState extends State<BibliotecaView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bibiolteca de Jogos',
+      title: 'Biblioteca de Jogos',
       theme: ThemeData(
-          primarySwatch: Colors.red,
-          scaffoldBackgroundColor: const Color.fromARGB(255, 41, 41, 41),
-          inputDecorationTheme:
-              InputDecorationTheme(filled: true, fillColor: Colors.white)),
+        primarySwatch: Colors.red,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 41, 41, 41),
+        inputDecorationTheme:
+            const InputDecorationTheme(filled: true, fillColor: Colors.white),
+        primaryTextTheme: Typography().white,
+        textTheme: Typography().white,
+      ),
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
