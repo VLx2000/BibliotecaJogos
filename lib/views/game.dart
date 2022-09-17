@@ -42,34 +42,73 @@ class _GameViewState extends State<GameView> {
                   Image.network(
                       'https:${snapshot.data!.cover["url"].replaceAll("t_thumb", "t_cover_big")}'),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Adicionar a Lista de Desejos"),
-                      ),
-                      ElevatedButton(
-                          onPressed: () {}, child: Text("Adicionar a Coleção"))
-                    ],
-                  ),
-                  Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          padding: const EdgeInsets.all(8),
-                          itemCount: snapshot.data!.genres!.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              child: Center(
+                      Expanded(
+                        child: Column(
+                          children: <Widget>[
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Text("Adicionar a Lista de Desejos"),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Title(
+                                color: Colors.black,
+                                child: Text(
+                                  "Gêneros",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              padding: const EdgeInsets.all(8),
+                              itemCount: snapshot.data!.genres!.length,
+                              itemBuilder: (context, index) {
+                                return Container(
                                   child: Text(
-                                      "- ${snapshot.data!.genres![index]['name']}")),
-                            );
-                          },
+                                      "- ${snapshot.data!.genres![index]['name']}"),
+                                );
+                              },
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Title(
+                                color: Colors.black,
+                                child: Text("Plataformas",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold)),
+                              ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              padding: const EdgeInsets.all(8),
+                              itemCount: snapshot.data!.genres!.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  child: Text(
+                                      "- ${snapshot.data!.platforms![index]["name"]}"),
+                                );
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      Expanded(
+                          child: Column(
+                        children: <Widget>[
+                          ElevatedButton(
+                              onPressed: () {},
+                              child: Text("Adicionar a Coleção")),
+                          Padding(
+                            padding: const EdgeInsets.all(1),
+                            child: Text("${snapshot.data!.rating}"),
+                          ),
+                        ],
+                      )),
+                    ],
                   ),
                 ],
               ));
