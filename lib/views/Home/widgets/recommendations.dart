@@ -73,7 +73,7 @@ class _RecommendationsViewState extends State<RecommendationsView> {
               ],
             );
           } else {
-            return GamesGridView(tam: tam, snapshot: snapshot, list: list);
+            return GamesGridView(tam: tam, list: list);
           }
         },
       ),

@@ -4,21 +4,33 @@ import 'package:biblioteca_jogos/views/Home/home.dart';
 
 void main() {
   runApp(
-    MaterialApp(
-      initialRoute: '/',
-      onGenerateRoute: (settings) {
-        if (settings.name == '/') {
-          return MaterialPageRoute(builder: (context) => const HomeView());
-        }
-        if (settings.name == '/game') {
-          var args = settings.arguments;
-          return MaterialPageRoute(
-              builder: (context) => GameView(id: args as String));
-        }
-        return MaterialPageRoute(builder: (context) => const UnknownScreen());
-      },
-    ),
+    const BibliotecaDeJogos(),
   );
+}
+
+class BibliotecaDeJogos extends StatelessWidget {
+  const BibliotecaDeJogos({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Biblioteca de Jogos',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 41, 41, 41),
+        inputDecorationTheme:
+            const InputDecorationTheme(filled: true, fillColor: Colors.white),
+        primaryTextTheme: Typography().white,
+        textTheme: Typography().white,
+      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeView(),
+        '/game': (context) => const GameView(),
+      },
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }
 
 class UnknownScreen extends StatelessWidget {

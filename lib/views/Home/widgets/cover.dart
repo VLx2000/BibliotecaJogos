@@ -9,20 +9,20 @@ class Cover extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context, rootNavigator: true).pushNamed(
-          '/game',
-          arguments: jogo.id.toString(),
-        );
+        Navigator.pushNamed(context, '/game', arguments: jogo);
       },
       child: (jogo.cover != null)
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(14), // Image border
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/loading.gif',
-                placeholderFit: BoxFit.scaleDown,
-                image:
-                    'https:${jogo.cover["url"].replaceAll("t_thumb", "t_cover_big")}',
-                fit: BoxFit.cover,
+          ? Hero(
+              tag: 'jogo${jogo.id}',
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(14), // Image border
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/loading.gif',
+                  placeholderFit: BoxFit.scaleDown,
+                  image:
+                      'https:${jogo.cover["url"].replaceAll("t_thumb", "t_cover_big")}',
+                  fit: BoxFit.cover,
+                ),
               ),
             )
           : Container(

@@ -8,7 +8,7 @@ class Jogo {
   final dynamic rating;
   final dynamic summary;
 
-  const Jogo(
+  Jogo(
       {required this.name,
       required this.id,
       this.cover,

@@ -24,17 +24,9 @@ class _GamesGridViewState extends State<GamesGridView> {
       padding: const EdgeInsets.all(14),
       itemCount: widget.list?.length,
       itemBuilder: (context, i) {
-        return InkWell(
-          onTap: () {
-            Navigator.of(context, rootNavigator: true).pushNamed(
-              '/game',
-              arguments: i,
-            );
-          },
-          child: Container(
-            margin: const EdgeInsets.all(7),
-            child: Cover(jogo: widget.snapshot!.data[i]),
-          ),
+        return Container(
+          margin: const EdgeInsets.all(7),
+          child: Cover(jogo: widget.list![i]),
         );
       },
     );

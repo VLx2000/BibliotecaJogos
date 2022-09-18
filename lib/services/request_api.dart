@@ -41,21 +41,4 @@ class APIRequest {
       return [];
     }
   }
-
-  Future<Jogo> searchGameById(String id) async {
-    try {
-      final Repository repo = Repository();
-
-      final auth = await repo.auth();
-      final responseBody = jsonDecode(auth.body);
-      final game = await repo.searchById(responseBody, id);
-
-      if (auth.statusCode == 200) {
-        return Jogo.fromJson(json.decode(game.body)[0]);
-      }
-      return const Jogo(name: 'not found', id: -1);
-    } catch (e) {
-      return const Jogo(name: 'not found', id: -1);
-    }
-  }
 }
