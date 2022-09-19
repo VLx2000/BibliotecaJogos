@@ -5,28 +5,36 @@ import 'package:biblioteca_jogos/views/Game/widgets/summary_line.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/genre_column.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/platforms_line.dart';
 import 'package:flutter/material.dart';
+import 'package:biblioteca_jogos/persistence/playlists.dart';
 
-class GameView extends StatefulWidget {
+class GameView extends StatelessWidget {
   const GameView({super.key});
+  final double distanceItems = 18;
+// class _GameViewState extends State<GameView> {
+//   double distanceItems = 18;
 
-  @override
-  State<GameView> createState() => _GameViewState();
-}
+//   @override
+//   void initState() {
+//     super.initState();
+//   }
 
-class _GameViewState extends State<GameView> {
-  late int saved;
-  double distanceItems = 18;
-
-  @override
-  void initState() {
-    super.initState();
-    saved = 0;
-  }
+  // void getPlaylists(String playlist) async {
+  //   if (playlist == "desejos") {
+  //     var wishlist = await Playlists().checkWishlist();
+  //     setState(() {
+  //       _wishlist = wishlist;
+  //     });
+  //   } else if (playlist == "colecao") {
+  //     var collection = await Playlists().checkCollection();
+  //     setState(() {
+  //       _collection = collection;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Jogo;
-
     return Scaffold(
         body: SingleChildScrollView(
       padding: const EdgeInsets.symmetric(
@@ -82,12 +90,19 @@ class _GameViewState extends State<GameView> {
                 )
               : const Text('no image'),
           // Botoes para adicionar em playlist
-          const ButtonBar(
+
+          ButtonBar(
             alignment: MainAxisAlignment.spaceEvenly,
             buttonPadding: EdgeInsets.all(12),
             children: [
-              PlaylistButton(playlist: 'colecao'),
-              PlaylistButton(playlist: 'desejos'),
+              PlaylistButton(
+                playlist: 'colecao',
+                gameid: args.id.toString(),
+              ),
+              PlaylistButton(
+                playlist: 'desejos',
+                gameid: args.id.toString(),
+              ),
               //PlaylistButton(playlist: 'colecao'),
               //PlaylistButton(playlist: 'playlist3'),
             ],
