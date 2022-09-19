@@ -11,16 +11,40 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    RecommendationsView(),
-    ExploreView(),
-    Text('tela playlist'),
+
+  final List<Widget> _widgetOptions = <Widget>[
+    const RecommendationsView(),
+    const ExploreView(),
+    const Center(
+      child: Text('tela playlist'),
+    ),
   ];
+
+  PageController? _pageController;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    _pageController!.jumpToPage(index);
+  }
+
+  void _onPageChanged(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController!.dispose();
+    super.dispose();
   }
 
   @override
@@ -32,8 +56,11 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: const Color.fromARGB(255, 24, 24, 24),
         title: const Text('Biblioteca de Jogos 🎮'),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        children: _widgetOptions,
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromARGB(255, 24, 24, 24),

@@ -21,9 +21,9 @@ class _PlaylistButtonState extends State<PlaylistButton> {
   }
 
   void getPlaylist(String playlist) async {
-    var games_list = await Playlists().checkPlaylists(playlist);
+    var gamesList = await Playlists().checkPlaylists(playlist);
     setState(() {
-      _currentPlaylist = games_list;
+      _currentPlaylist = gamesList;
     });
   }
 

@@ -11,9 +11,14 @@ class RecommendationsView extends StatefulWidget {
   State<RecommendationsView> createState() => _RecommendationsViewState();
 }
 
-class _RecommendationsViewState extends State<RecommendationsView> {
+class _RecommendationsViewState extends State<RecommendationsView>
+    with AutomaticKeepAliveClientMixin {
   late Future<List<Jogo>> futureJogos;
   APIRequest req = APIRequest();
+  bool _loaded = false;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -23,10 +28,12 @@ class _RecommendationsViewState extends State<RecommendationsView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final int tam = MediaQuery.of(context).size.width ~/ 150;
     return RefreshIndicator(
       onRefresh: () {
         setState(() {
+          _loaded = true;
           futureJogos = req.fetchGameRecommendations();
         });
         return futureJogos;
@@ -37,9 +44,9 @@ class _RecommendationsViewState extends State<RecommendationsView> {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
             case ConnectionState.waiting:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return _loaded
+                  ? Container()
+                  : const Center(child: CircularProgressIndicator());
             case ConnectionState.active:
             case ConnectionState.done:
               if (snapshot.hasError) {
