@@ -2,6 +2,7 @@ import 'package:biblioteca_jogos/views/Home/widgets/explore.dart';
 import 'package:flutter/material.dart';
 import 'package:biblioteca_jogos/views/Home/widgets/recommendations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:biblioteca_jogos/views/Home/widgets/playlists.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -16,9 +17,7 @@ class _HomeViewState extends State<HomeView> {
   final List<Widget> _widgetOptions = <Widget>[
     const RecommendationsView(),
     const ExploreView(),
-    const Center(
-      child: Text('tela playlist'),
-    ),
+    const PlaylistsView(),
   ];
 
   PageController? _pageController;

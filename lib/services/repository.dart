@@ -24,7 +24,8 @@ class Repository {
   Future<Response> searchGamesByid(
       dynamic responseBody, List<String> ids_list) async {
     const fields = 'fields name,cover.url';
-    final ids = ids_list.toString().substring(1, ids_list.toString().length);
+    final ids =
+        ids_list.toString().substring(1, ids_list.toString().length - 1);
     final where = 'where id = ($ids)';
 
     return await post(

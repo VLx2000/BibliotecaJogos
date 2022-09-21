@@ -40,7 +40,6 @@ class BibliotecaDeJogos extends StatelessWidget {
       routes: {
         '/': (context) => const HomeView(),
         '/game': (context) => const GameView(),
-        '/playlists': (context) => const PlaylistsView(),
       },
       debugShowCheckedModeBanner: false,
     );

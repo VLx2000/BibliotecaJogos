@@ -33,10 +33,12 @@ class GamesController {
   }
 
   Future<List<Game>> fetchGamesfromPlaylist(List<String> ids) async {
+    if (ids.length == 0) {
+      return [];
+    }
     final auth = await repo.auth();
     final responseBody = jsonDecode(auth.body);
     final games = await repo.searchGamesByid(responseBody, ids);
-
     if (auth.statusCode == 200) {
       return List<Game>.from(
           json.decode(games.body).map((jogo) => Game.fromJson(jogo)));
