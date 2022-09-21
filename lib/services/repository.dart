@@ -21,6 +21,22 @@ class Repository {
     );
   }
 
+  Future<Response> searchGamesByid(
+      dynamic responseBody, List<String> ids_list) async {
+    final fields = 'fields name,cover.url';
+    final ids = ids_list.toString().substring(1, ids_list.toString().length);
+    final where = 'where id = ($ids)';
+
+    return await post(
+      APIUrl.searchUrl,
+      headers: {
+        "Client-ID": Secret.clientID,
+        "Authorization": "Bearer ${responseBody["access_token"]}",
+      },
+      body: '$fields; $where;',
+    );
+  }
+
   Future<Response> searchByText(dynamic responseBody, String busca) async {
     final fields =
         'search "$busca"; fields name,cover.url,platforms.name,release_dates.human,rating,summary,genres.name';

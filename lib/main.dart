@@ -1,6 +1,7 @@
 import 'package:biblioteca_jogos/views/Game/game.dart';
 import 'package:flutter/material.dart';
 import 'package:biblioteca_jogos/views/Home/home.dart';
+import 'package:biblioteca_jogos/views/Home/widgets/playlists.dart';
 
 void main() {
   runApp(
@@ -27,6 +28,7 @@ class BibliotecaDeJogos extends StatelessWidget {
       routes: {
         '/': (context) => const HomeView(),
         '/game': (context) => const GameView(),
+        '/playlists': (context) => const PlaylistsView(),
       },
       debugShowCheckedModeBanner: false,
     );
