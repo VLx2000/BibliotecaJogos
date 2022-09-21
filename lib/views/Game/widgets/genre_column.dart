@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GenreColumn extends StatelessWidget {
   final dynamic genres;
@@ -13,9 +14,9 @@ class GenreColumn extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8),
           child: Title(
             color: Colors.black,
-            child: const Text(
-              "Gêneros",
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context)!.genres,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),

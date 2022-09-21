@@ -1,0 +1,13 @@
+{
+    "appTitle": "Biblioteca de Jogos",
+    "genres": "Gêneros",
+    "platforms": "Plataformas",
+    "rating": "Nota",
+    "summary": "Descrição",
+    "searchPlaceholder": "Digite o nome do jogo",
+    "reload": "Recarregar",
+    "wifiMsg": "Verifique sua conexão",
+    "home": "Início",
+    "explore": "Explorar",
+    "playlist": "Coleções"
+}

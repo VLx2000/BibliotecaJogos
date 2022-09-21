@@ -1,7 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Playlists {
-  Playlists() {}
+  Playlists();
   Future<List<String>> checkPlaylists(String playlist) async {
     final prefs = await SharedPreferences.getInstance();
     if (playlist == "colecao") {

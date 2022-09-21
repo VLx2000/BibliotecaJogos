@@ -1,11 +1,11 @@
 import 'package:biblioteca_jogos/views/Home/widgets/cover.dart';
-import 'package:biblioteca_jogos/models/jogo.dart';
+import 'package:biblioteca_jogos/models/game.dart';
 import 'package:flutter/material.dart';
 
 class GamesGridView extends StatefulWidget {
   final int? tam;
   final AsyncSnapshot? snapshot;
-  final List<Jogo>? list;
+  final List<Game>? list;
   const GamesGridView({super.key, this.tam, this.snapshot, this.list});
 
   @override

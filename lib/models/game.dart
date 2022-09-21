@@ -1,4 +1,4 @@
-class Jogo {
+class Game {
   final String name;
   final int id;
   final dynamic cover;
@@ -8,7 +8,7 @@ class Jogo {
   final dynamic rating;
   final dynamic summary;
 
-  Jogo(
+  Game(
       {required this.name,
       required this.id,
       this.cover,
@@ -18,8 +18,8 @@ class Jogo {
       this.rating,
       this.summary});
 
-  factory Jogo.fromJson(Map<String, dynamic> json) {
-    return Jogo(
+  factory Game.fromJson(Map<String, dynamic> json) {
+    return Game(
         name: json['name'],
         id: json['id'],
         cover: json['cover'],

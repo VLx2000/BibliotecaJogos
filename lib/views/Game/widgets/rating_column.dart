@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RatingColumn extends StatelessWidget {
   final dynamic rating;
@@ -30,9 +31,9 @@ class RatingColumn extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const Text(
-          'Rating',
-          style: TextStyle(
+        Text(
+          AppLocalizations.of(context)!.rating,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),

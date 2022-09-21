@@ -1,7 +1,4 @@
-import 'dart:html';
-
-import 'package:biblioteca_jogos/models/jogo.dart';
-import 'package:biblioteca_jogos/services/request_api.dart';
+import 'package:biblioteca_jogos/models/game.dart';
 import 'package:biblioteca_jogos/views/Home/widgets/games_gridview.dart';
 import 'package:flutter/material.dart';
 import 'package:biblioteca_jogos/persistence/playlists.dart';

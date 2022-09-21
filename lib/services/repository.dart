@@ -23,7 +23,7 @@ class Repository {
 
   Future<Response> searchGamesByid(
       dynamic responseBody, List<String> ids_list) async {
-    final fields = 'fields name,cover.url';
+    const fields = 'fields name,cover.url';
     final ids = ids_list.toString().substring(1, ids_list.toString().length);
     final where = 'where id = ($ids)';
 

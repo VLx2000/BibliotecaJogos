@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'package:biblioteca_jogos/models/jogo.dart';
-import 'package:biblioteca_jogos/services/request_api.dart';
+import 'package:biblioteca_jogos/models/game.dart';
+import 'package:biblioteca_jogos/controllers/games_controller.dart';
 import 'package:biblioteca_jogos/views/Home/widgets/games_gridview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RecommendationsView extends StatefulWidget {
   const RecommendationsView({super.key});
@@ -13,8 +14,8 @@ class RecommendationsView extends StatefulWidget {
 
 class _RecommendationsViewState extends State<RecommendationsView>
     with AutomaticKeepAliveClientMixin {
-  late Future<List<Jogo>> futureJogos;
-  APIRequest req = APIRequest();
+  late Future<List<Game>> futureJogos;
+  final GamesController _controller = GamesController();
   bool _loaded = false;
 
   @override
@@ -23,7 +24,7 @@ class _RecommendationsViewState extends State<RecommendationsView>
   @override
   void initState() {
     super.initState();
-    futureJogos = req.fetchGameRecommendations();
+    futureJogos = _controller.fetchRecommendations();
   }
 
   @override
@@ -34,11 +35,11 @@ class _RecommendationsViewState extends State<RecommendationsView>
       onRefresh: () {
         setState(() {
           _loaded = true;
-          futureJogos = req.fetchGameRecommendations();
+          futureJogos = _controller.fetchRecommendations();
         });
         return futureJogos;
       },
-      child: FutureBuilder<List<Jogo>>(
+      child: FutureBuilder<List<Game>>(
         future: futureJogos,
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
@@ -53,14 +54,14 @@ class _RecommendationsViewState extends State<RecommendationsView>
                 return Text('${snapshot.error}');
               }
           }
-          List<Jogo> list = snapshot.data ?? [];
+          List<Game> list = snapshot.data ?? [];
           if (list.isEmpty) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Verifique sua conexão',
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.wifiMsg,
+                  style: const TextStyle(
                     color: Colors.white,
                     decorationColor: Colors.white,
                   ),
@@ -68,14 +69,14 @@ class _RecommendationsViewState extends State<RecommendationsView>
                 ElevatedButton.icon(
                   onPressed: () {
                     setState(() {
-                      futureJogos = req.fetchGameRecommendations();
+                      futureJogos = _controller.fetchRecommendations();
                     });
                   },
                   icon: const Icon(
                     Icons.refresh,
                     size: 24.0,
                   ),
-                  label: const Text('Recarregar'),
+                  label: Text(AppLocalizations.of(context)!.reload),
                 ),
               ],
             );

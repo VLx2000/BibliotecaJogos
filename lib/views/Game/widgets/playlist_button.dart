@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:biblioteca_jogos/persistence/playlists.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlaylistButton extends StatefulWidget {
   final String playlist;

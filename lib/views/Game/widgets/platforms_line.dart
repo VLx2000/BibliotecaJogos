@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PlatformsLine extends StatelessWidget {
   final dynamic platforms;
@@ -15,9 +16,9 @@ class PlatformsLine extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: Title(
                 color: Colors.black,
-                child: const Text(
-                  "Plataformas",
-                  style: TextStyle(
+                child: Text(
+                  AppLocalizations.of(context)!.platforms,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),

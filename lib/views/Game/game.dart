@@ -1,11 +1,12 @@
-import 'package:biblioteca_jogos/models/jogo.dart';
+import 'package:biblioteca_jogos/models/game.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/playlist_button.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/rating_column.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/summary_line.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/genre_column.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/platforms_line.dart';
 import 'package:flutter/material.dart';
-import 'package:biblioteca_jogos/persistence/playlists.dart';
+//import 'package:biblioteca_jogos/persistence/playlists.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GameView extends StatelessWidget {
   const GameView({super.key});
@@ -32,7 +33,7 @@ class GameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as Jogo;
+    final args = ModalRoute.of(context)!.settings.arguments as Game;
     return Scaffold(
         body: SingleChildScrollView(
       padding: const EdgeInsets.symmetric(
@@ -50,7 +51,7 @@ class GameView extends StatelessWidget {
     ));
   }
 
-  Widget _buildTitleSection(Jogo args) {
+  Widget _buildTitleSection(Game args) {
     return Container(
       padding: EdgeInsets.only(bottom: distanceItems),
       child: Column(
@@ -82,23 +83,38 @@ class GameView extends StatelessWidget {
     );
   }
 
-  Widget _buildGameCard(Jogo args) {
+  Widget _buildGameCard(Game args) {
     return Hero(
       tag: 'jogo${args.id}',
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
-        child: FadeInImage.assetNetwork(
-          placeholder: 'assets/loading.gif',
-          placeholderFit: BoxFit.scaleDown,
-          image:
-              'https:${args.cover["url"].replaceAll("t_thumb", "t_cover_big")}',
-          fit: BoxFit.cover,
+        child: Image.network(
+          'https:${args.cover["url"].replaceAll("t_thumb", "t_cover_big")}',
+          errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) =>
+              Container(
+            height: 300,
+            width: 200,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(14),
+              ),
+              color: Colors.white70,
+            ),
+            child: const Center(
+              child: Text(
+                '404!',
+                textScaleFactor: 1.7,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildButtonBar(Jogo args) {
+  Widget _buildButtonBar(Game args) {
     return ButtonBar(
       alignment: MainAxisAlignment.spaceEvenly,
       buttonPadding: const EdgeInsets.all(12),
@@ -117,7 +133,7 @@ class GameView extends StatelessWidget {
     );
   }
 
-  Widget _buildGameDataSection(Jogo args) {
+  Widget _buildGameDataSection(Game args) {
     return Column(
       children: [
         Padding(

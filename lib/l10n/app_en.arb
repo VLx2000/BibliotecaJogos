@@ -1,0 +1,13 @@
+{
+    "appTitle": "Games Library",
+    "genres": "Genres",
+    "platforms": "Platforms",
+    "rating": "Rating",
+    "summary": "Summary",
+    "searchPlaceholder": "Enter game name",
+    "reload": "Reload",
+    "wifiMsg": "Verify your connection",
+    "home": "Home",
+    "explore": "Explore",
+    "playlist": "Playlists"
+}
