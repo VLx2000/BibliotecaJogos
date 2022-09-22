@@ -49,7 +49,9 @@ class _PlaylistButtonState extends State<PlaylistButton> {
             : Colors.red),
       ),
       child: Text(
-        widget.playlist,
+        (widget.playlist == "colecao"
+            ? AppLocalizations.of(context)!.collection
+            : AppLocalizations.of(context)!.wishlist),
         textAlign: TextAlign.center,
         style: const TextStyle(
           fontSize: 18,

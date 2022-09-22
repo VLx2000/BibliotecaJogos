@@ -9,5 +9,9 @@
     "wifiMsg": "Verifique sua conexão",
     "home": "Início",
     "explore": "Explorar",
-    "playlist": "Coleções"
+    "playlist": "Playlists",
+    "emtpydb":"Sem jogos salvos nesta coleção",
+    "collection":"Coleção",
+    "wishlist":"Desejos"
+
 }

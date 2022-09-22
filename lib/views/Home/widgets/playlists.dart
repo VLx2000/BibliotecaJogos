@@ -65,7 +65,7 @@ class _PlaylistsViewState extends State<PlaylistsView>
                 style: ElevatedButton.styleFrom(
                     backgroundColor:
                         _tappedButton == 0 ? Colors.grey : Colors.red),
-                child: const Text('Coleção'),
+                child: Text(AppLocalizations.of(context)!.collection),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -78,7 +78,7 @@ class _PlaylistsViewState extends State<PlaylistsView>
                 style: ElevatedButton.styleFrom(
                     backgroundColor:
                         _tappedButton == 1 ? Colors.grey : Colors.red),
-                child: const Text("Desejos"),
+                child: Text(AppLocalizations.of(context)!.wishlist),
               ),
             ],
           ),
@@ -98,8 +98,10 @@ class _PlaylistsViewState extends State<PlaylistsView>
                       return Text('${snapshot.error}');
                     }
                 }
+
+                var connection_test = snapshot.data ?? -1;
                 List<Game> list = snapshot.data ?? [];
-                if (list.isEmpty) {
+                if (connection_test == -1) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -121,6 +123,19 @@ class _PlaylistsViewState extends State<PlaylistsView>
                           size: 24.0,
                         ),
                         label: Text(AppLocalizations.of(context)!.reload),
+                      ),
+                    ],
+                  );
+                } else if (list.isEmpty) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.emtpydb,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          decorationColor: Colors.white,
+                        ),
                       ),
                     ],
                   );
