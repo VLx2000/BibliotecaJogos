@@ -5,31 +5,10 @@ import 'package:biblioteca_jogos/views/Game/widgets/summary_line.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/genre_column.dart';
 import 'package:biblioteca_jogos/views/Game/widgets/platforms_line.dart';
 import 'package:flutter/material.dart';
-//import 'package:biblioteca_jogos/persistence/playlists.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GameView extends StatelessWidget {
   const GameView({super.key});
   final double distanceItems = 18;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//   }
-
-  // void getPlaylists(String playlist) async {
-  //   if (playlist == "desejos") {
-  //     var wishlist = await Playlists().checkWishlist();
-  //     setState(() {
-  //       _wishlist = wishlist;
-  //     });
-  //   } else if (playlist == "colecao") {
-  //     var collection = await Playlists().checkCollection();
-  //     setState(() {
-  //       _collection = collection;
-  //     });
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -127,8 +106,6 @@ class GameView extends StatelessWidget {
           playlist: 'desejos',
           gameid: args.id.toString(),
         ),
-        //PlaylistButton(playlist: 'colecao'),
-        //PlaylistButton(playlist: 'playlist3'),
       ],
     );
   }
