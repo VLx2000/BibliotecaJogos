@@ -7,6 +7,9 @@ class Game {
   final List<dynamic>? genres;
   final dynamic rating;
   final dynamic summary;
+  String? heroTag;
+
+  set setHeroTag(heroTag) => this.heroTag = heroTag;
 
   Game(
       {required this.name,
@@ -16,7 +19,8 @@ class Game {
       this.releaseDates,
       this.genres,
       this.rating,
-      this.summary});
+      this.summary,
+      this.heroTag});
 
   factory Game.fromJson(Map<String, dynamic> json) {
     return Game(

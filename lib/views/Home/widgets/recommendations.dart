@@ -81,7 +81,11 @@ class _RecommendationsViewState extends State<RecommendationsView>
               ],
             );
           } else {
-            return GamesGridView(tam: tam, list: list);
+            return GamesGridView(
+              tam: tam,
+              list: list,
+              heroTag: 'recommendationGame',
+            );
           }
         },
       ),

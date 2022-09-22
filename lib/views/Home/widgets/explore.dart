@@ -74,7 +74,8 @@ class _ExploreViewState extends State<ExploreView> {
                   }
               }
               List<Game> list = snapshot.data ?? [];
-              return GamesGridView(tam: tam, list: list);
+              return GamesGridView(
+                  tam: tam, list: list, heroTag: 'exploreGame');
             },
           ),
         ),

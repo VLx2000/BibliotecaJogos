@@ -6,7 +6,9 @@ class GamesGridView extends StatefulWidget {
   final int? tam;
   final AsyncSnapshot? snapshot;
   final List<Game>? list;
-  const GamesGridView({super.key, this.tam, this.snapshot, this.list});
+  final String heroTag;
+  const GamesGridView(
+      {super.key, this.tam, this.snapshot, this.list, required this.heroTag});
 
   @override
   State<GamesGridView> createState() => _GamesGridViewState();
@@ -24,9 +26,13 @@ class _GamesGridViewState extends State<GamesGridView> {
       padding: const EdgeInsets.all(14),
       itemCount: widget.list?.length,
       itemBuilder: (context, i) {
+        widget.list![i].setHeroTag = widget.heroTag;
         return Container(
           margin: const EdgeInsets.all(7),
-          child: Cover(jogo: widget.list![i]),
+          child: Cover(
+            jogo: widget.list![i],
+            heroTag: widget.heroTag,
+          ),
         );
       },
     );

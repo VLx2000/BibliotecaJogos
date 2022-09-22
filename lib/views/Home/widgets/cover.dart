@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class Cover extends StatelessWidget {
   final Game jogo;
-  const Cover({super.key, required this.jogo});
+  final String heroTag;
+  const Cover({super.key, required this.jogo, required this.heroTag});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class Cover extends StatelessWidget {
       },
       child: (jogo.cover != null)
           ? Hero(
-              tag: 'jogo${jogo.id}',
+              tag: '$heroTag${jogo.id}',
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: FadeInImage.assetNetwork(

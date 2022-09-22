@@ -13,35 +13,37 @@ class PlaylistsView extends StatefulWidget {
   State<PlaylistsView> createState() => _PlaylistsViewState();
 }
 
-class _PlaylistsViewState extends State<PlaylistsView> {
+class _PlaylistsViewState extends State<PlaylistsView>
+    with AutomaticKeepAliveClientMixin {
   String _playlist = 'colecao';
   late Future<List<Game>> futureJogos;
   final GamesController _controller = GamesController();
-  int _tapped_button = 0;
+  int _tappedButton = 0;
   bool _loaded = false;
 
-  Future<List<Game>> LoadGames(String playlist) async {
-    List<String> game_ids = await Playlists().checkPlaylists(playlist);
-    return _controller.fetchGamesfromPlaylist(game_ids);
+  Future<List<Game>> loadGames(String playlist) async {
+    List<String> gameIds = await Playlists().checkPlaylists(playlist);
+    return _controller.fetchGamesfromPlaylist(gameIds);
   }
 
-  // @override
-  // bool get wantKeepAlive => true;
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
     super.initState();
-    futureJogos = LoadGames(_playlist);
+    futureJogos = loadGames(_playlist);
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final int tam = MediaQuery.of(context).size.width ~/ 150;
     return RefreshIndicator(
       onRefresh: () {
         setState(() {
           _loaded = true;
-          futureJogos = LoadGames(_playlist);
+          futureJogos = loadGames(_playlist);
         });
         return futureJogos;
       },
@@ -56,27 +58,27 @@ class _PlaylistsViewState extends State<PlaylistsView> {
                 onPressed: () {
                   setState(() {
                     _playlist = 'colecao';
-                    futureJogos = LoadGames(_playlist);
-                    _tapped_button = 0;
+                    futureJogos = loadGames(_playlist);
+                    _tappedButton = 0;
                   });
                 },
-                child: Text('Coleção'),
                 style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        _tapped_button == 0 ? Colors.grey : Colors.red),
+                        _tappedButton == 0 ? Colors.grey : Colors.red),
+                child: const Text('Coleção'),
               ),
               ElevatedButton(
                 onPressed: () {
                   setState(() {
                     _playlist = 'desejos';
-                    futureJogos = LoadGames(_playlist);
-                    _tapped_button = 1;
+                    futureJogos = loadGames(_playlist);
+                    _tappedButton = 1;
                   });
                 },
-                child: Text("Desejos"),
                 style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        _tapped_button == 1 ? Colors.grey : Colors.red),
+                        _tappedButton == 1 ? Colors.grey : Colors.red),
+                child: const Text("Desejos"),
               ),
             ],
           ),
@@ -97,7 +99,6 @@ class _PlaylistsViewState extends State<PlaylistsView> {
                     }
                 }
                 List<Game> list = snapshot.data ?? [];
-                print(list);
                 if (list.isEmpty) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +113,7 @@ class _PlaylistsViewState extends State<PlaylistsView> {
                       ElevatedButton.icon(
                         onPressed: () {
                           setState(() {
-                            futureJogos = LoadGames(_playlist);
+                            futureJogos = loadGames(_playlist);
                           });
                         },
                         icon: const Icon(
@@ -124,7 +125,8 @@ class _PlaylistsViewState extends State<PlaylistsView> {
                     ],
                   );
                 } else {
-                  return GamesGridView(tam: tam, list: list);
+                  return GamesGridView(
+                      tam: tam, list: list, heroTag: 'playlistGame');
                 }
               },
             ),

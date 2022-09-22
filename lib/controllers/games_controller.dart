@@ -33,7 +33,7 @@ class GamesController {
   }
 
   Future<List<Game>> fetchGamesfromPlaylist(List<String> ids) async {
-    if (ids.length == 0) {
+    if (ids.isEmpty) {
       return [];
     }
     final auth = await repo.auth();
