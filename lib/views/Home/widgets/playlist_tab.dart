@@ -62,44 +62,14 @@ class _PlaylistTabState extends State<PlaylistTab>
               }
           }
 
-          var connectionTest = snapshot.data ?? -1;
           List<Game> list = snapshot.data ?? [];
-          if (connectionTest == -1) {
-            return _buildNoConnectionScreen();
-          } else if (list.isEmpty) {
+          if (list.isEmpty) {
             return _buildEmptyPlaylistScreen();
           } else {
             return GamesGridView(tam: tam, list: list, heroTag: 'playlistGame');
           }
         },
       ),
-    );
-  }
-
-  Widget _buildNoConnectionScreen() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          AppLocalizations.of(context)!.wifiMsg,
-          style: const TextStyle(
-            color: Colors.white,
-            decorationColor: Colors.white,
-          ),
-        ),
-        ElevatedButton.icon(
-          onPressed: () {
-            setState(() {
-              futureJogos = loadGames(widget.playlistName);
-            });
-          },
-          icon: const Icon(
-            Icons.refresh,
-            size: 24.0,
-          ),
-          label: Text(AppLocalizations.of(context)!.reload),
-        ),
-      ],
     );
   }
 

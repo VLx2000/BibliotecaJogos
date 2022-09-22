@@ -56,29 +56,31 @@ class _RecommendationsViewState extends State<RecommendationsView>
           }
           List<Game> list = snapshot.data ?? [];
           if (list.isEmpty) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.wifiMsg,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    decorationColor: Colors.white,
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.wifiMsg,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      decorationColor: Colors.white,
+                    ),
                   ),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    setState(() {
-                      futureJogos = _controller.fetchRecommendations();
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.refresh,
-                    size: 24.0,
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        futureJogos = _controller.fetchRecommendations();
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.refresh,
+                      size: 24.0,
+                    ),
+                    label: Text(AppLocalizations.of(context)!.reload),
                   ),
-                  label: Text(AppLocalizations.of(context)!.reload),
-                ),
-              ],
+                ],
+              ),
             );
           } else {
             return GamesGridView(
