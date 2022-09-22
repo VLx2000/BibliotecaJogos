@@ -49,7 +49,7 @@ class GameView extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              args.releaseDates?[0]['human'].toString() ?? 'TBT',
+              args.releaseDates?[0]['human'].toString() ?? 'TBA',
               textAlign: TextAlign.start,
               style: const TextStyle(
                 fontStyle: FontStyle.italic,
