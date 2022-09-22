@@ -105,12 +105,29 @@ class _PlaylistTabState extends State<PlaylistTab>
 
   Widget _buildEmptyPlaylistScreen() {
     return Center(
-      child: Text(
-        AppLocalizations.of(context)!.emtpydb,
-        style: const TextStyle(
-          color: Colors.white,
-          decorationColor: Colors.white,
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            AppLocalizations.of(context)!.emtpydb,
+            style: const TextStyle(
+              color: Colors.white,
+              decorationColor: Colors.white,
+            ),
+          ),
+          ElevatedButton.icon(
+            onPressed: () {
+              setState(() {
+                futureJogos = loadGames(widget.playlistName);
+              });
+            },
+            icon: const Icon(
+              Icons.refresh,
+              size: 24.0,
+            ),
+            label: Text(AppLocalizations.of(context)!.reload),
+          ),
+        ],
       ),
     );
   }

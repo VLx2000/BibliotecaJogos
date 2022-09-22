@@ -18,7 +18,7 @@ class PlaylistsView extends StatelessWidget {
                 text: AppLocalizations.of(context)!.collection,
               ),
               Tab(
-                text: AppLocalizations.of(context)!.playlist,
+                text: AppLocalizations.of(context)!.wishlist,
               ),
             ],
           ),
