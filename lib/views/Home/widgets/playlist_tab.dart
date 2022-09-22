@@ -46,65 +46,70 @@ class _PlaylistTabState extends State<PlaylistTab>
         });
         return futureJogos;
       },
-      child: Expanded(
-        child: FutureBuilder<List<Game>>(
-          future: futureJogos,
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-              case ConnectionState.waiting:
-                return _loaded
-                    ? Container()
-                    : const Center(child: CircularProgressIndicator());
-              case ConnectionState.active:
-              case ConnectionState.done:
-                if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
-                }
-            }
+      child: FutureBuilder<List<Game>>(
+        future: futureJogos,
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return _loaded
+                  ? Container()
+                  : const Center(child: CircularProgressIndicator());
+            case ConnectionState.active:
+            case ConnectionState.done:
+              if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+          }
 
-            var connectionTest = snapshot.data ?? -1;
-            List<Game> list = snapshot.data ?? [];
-            if (connectionTest == -1) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.wifiMsg,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      decorationColor: Colors.white,
-                    ),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        futureJogos = loadGames(widget.playlistName);
-                      });
-                    },
-                    icon: const Icon(
-                      Icons.refresh,
-                      size: 24.0,
-                    ),
-                    label: Text(AppLocalizations.of(context)!.reload),
-                  ),
-                ],
-              );
-            } else if (list.isEmpty) {
-              return Center(
-                child: Text(
-                  AppLocalizations.of(context)!.emtpydb,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    decorationColor: Colors.white,
-                  ),
-                ),
-              );
-            } else {
-              return GamesGridView(
-                  tam: tam, list: list, heroTag: 'playlistGame');
-            }
+          var connectionTest = snapshot.data ?? -1;
+          List<Game> list = snapshot.data ?? [];
+          if (connectionTest == -1) {
+            return _buildNoConnectionScreen();
+          } else if (list.isEmpty) {
+            return _buildEmptyPlaylistScreen();
+          } else {
+            return GamesGridView(tam: tam, list: list, heroTag: 'playlistGame');
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildNoConnectionScreen() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          AppLocalizations.of(context)!.wifiMsg,
+          style: const TextStyle(
+            color: Colors.white,
+            decorationColor: Colors.white,
+          ),
+        ),
+        ElevatedButton.icon(
+          onPressed: () {
+            setState(() {
+              futureJogos = loadGames(widget.playlistName);
+            });
           },
+          icon: const Icon(
+            Icons.refresh,
+            size: 24.0,
+          ),
+          label: Text(AppLocalizations.of(context)!.reload),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEmptyPlaylistScreen() {
+    return Center(
+      child: Text(
+        AppLocalizations.of(context)!.emtpydb,
+        style: const TextStyle(
+          color: Colors.white,
+          decorationColor: Colors.white,
         ),
       ),
     );

@@ -66,23 +66,25 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: const Color.fromARGB(255, 24, 24, 24),
         unselectedItemColor: Colors.white,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            label: AppLocalizations.of(context)!.home,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.explore),
-            label: AppLocalizations.of(context)!.explore,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.collections),
-            label: AppLocalizations.of(context)!.playlist,
-          ),
+          _buildBottomNavBarItem(
+              Icons.home, AppLocalizations.of(context)!.home),
+          _buildBottomNavBarItem(
+              Icons.explore, AppLocalizations.of(context)!.explore),
+          _buildBottomNavBarItem(
+              Icons.collections, AppLocalizations.of(context)!.playlist),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.red,
         onTap: _onItemTapped,
       ),
+    );
+  }
+
+  BottomNavigationBarItem _buildBottomNavBarItem(
+      IconData icon, String labelText) {
+    return BottomNavigationBarItem(
+      icon: Icon(icon),
+      label: labelText,
     );
   }
 }

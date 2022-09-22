@@ -64,7 +64,7 @@ class GameView extends StatelessWidget {
 
   Widget _buildGameCard(Game args) {
     return Hero(
-      tag: 'jogo${args.id}',
+      tag: '${args.heroTag}${args.id}',
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
         child: Image.network(

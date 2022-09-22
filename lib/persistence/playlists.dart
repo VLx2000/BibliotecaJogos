@@ -15,14 +15,4 @@ class Playlists {
     final prefs = await SharedPreferences.getInstance();
     prefs.setStringList(playlist, games);
   }
-
-  // Future<void> saveWishlist() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   prefs.setStringList('wishlist', wishlist);
-  // }
-
-  // Future<void> saveLibrary() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   prefs.setStringList('library', library);
-  // }
 }
